@@ -12,6 +12,10 @@ path = "src/p1584.rs"
 name = "p207"
 path = "src/p207.rs"
 
+[[bin]]
+name = "p126"
+path = "src/p126.rs"
+
 [dependencies]
 serde = "1.0.188"
 serde_json = "1.0.107"

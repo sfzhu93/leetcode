@@ -24,7 +24,7 @@ impl Solution {
         }
 
         for i in 1..=num_courses {
-            
+
         }
         false
     }

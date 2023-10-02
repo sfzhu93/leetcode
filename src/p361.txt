@@ -1,0 +1,6 @@
+How the answer is figured out?
+
+It should be straightforward to find the redundant computations if simulating the problem on a paper for a period of
+time. Although the editoral says to be a dynamic programming, it is more like a subtle lazy evaluation during
+enumerating the cells. Instead, we can try to compute an array offline from the enumeration, which could be easier to
+understand.
