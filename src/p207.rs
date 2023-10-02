@@ -1,32 +1,38 @@
 
 impl Solution {
     pub fn can_finish(num_courses: i32, prerequisites: Vec<Vec<i32>>) -> bool {
-        let mut ind: Vec<i32> = (1..=num_courses).collect();
-        let mut visited: Vec<bool> = vec![false; (num_courses + 1) as usize];
-        let mut graph: Vec<Vec<i32>> = (1..=num_courses).map(|x|vec![]).collect();
+        let n = num_courses as usize;
+        let mut ind: Vec<i32> = vec![0; n];
+        let mut graph: Vec<Vec<usize>> = vec![vec![]; n];
         for pre in prerequisites {
-            graph[pre[0]].push(pre[1]);
-            ind[pre[1]] += 1;
+            graph[pre[0] as usize].push(pre[1] as usize);
+            ind[pre[1] as usize] += 1;
         }
+        println!("{:?}", ind);
         let mut queue = VecDeque::default();
         for (i, x) in ind.iter().enumerate() {
-            if x == 0 {
+            if *x == 0 {
                 queue.push_back(i);
-                visited[i] = true;
             }
         }
 
         while !queue.is_empty() {
-            let head = queue.pop_front();
-            for x in graph[head] {
-                ind[x] -= 1
+            let head = queue.pop_front().unwrap();
+            println!("{}", head);
+            for x in &graph[head] {
+                ind[*x] -= 1;
+                if ind[*x] == 0 {
+                    queue.push_back(*x);
+                }
             }
         }
 
-        for i in 1..=num_courses {
-
+        for i in 0..n {
+            if ind[i as usize] > 0 {
+                return false
+            }
         }
-        false
+        true
     }
 }
 
